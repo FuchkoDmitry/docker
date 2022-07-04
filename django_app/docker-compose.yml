@@ -1,0 +1,47 @@
+version: "3.7"
+
+volumes:
+    pgdata:
+    static:
+
+services:
+
+    postgres:
+        image: postgres:latest
+        restart: unless-stopped
+        volumes:
+            - .:/docker-entrypoint-inidb.d
+            - pgdata:/var/lib/postgresql/data/
+            - ./logs:/var/log
+        expose:
+            - 5432
+        ports:
+            - "5555:5432"
+        env_file:
+            - .env
+    
+    web:
+        container_name: django_app
+        build: ./
+        depends_on:
+            - postgres
+        restart: always
+        ports:
+            - "5050:8000"
+        env_file:
+            - .env
+        volumes:
+            - .:/code
+            - static:/code/static
+        entrypoint: /code/entrypoint.sh
+
+    nginx:
+        build: ./nginx
+        ports:
+            - 80:80
+        volumes:
+            - static:/code/static
+        depends_on:
+            - web
+        restart: on-failure
+        

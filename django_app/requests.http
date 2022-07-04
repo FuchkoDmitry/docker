@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5555/api/v1
+@baseUrl = http://localhost/api/v1
 
 # получить продукты
 GET {{baseUrl}}/products/
@@ -18,7 +18,7 @@ POST {{baseUrl}}/products/
 Content-Type: application/json
 
 {
-  "title": "Помидор",
+  "title": "Помидорs",
   "description": "Лучшие помидоры на рынке"
 }
 
@@ -59,7 +59,7 @@ Content-Type: application/json
       "price": 120.50
     },
     {
-      "product": 2,
+      "product": 3,
       "quantity": 100,
       "price": 180
     }
@@ -80,7 +80,7 @@ Content-Type: application/json
       "price": 130.80
     },
     {
-      "product": 2,
+      "product": 4,
       "quantity": 243,
       "price": 145
     }

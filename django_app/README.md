@@ -11,16 +11,22 @@
 Так как продуктов и складов может быть много, то необходимо реализовать пагинацию для вывода списков.
 
 
-## ***Создать образ:***
-### ***Выполнить команду в корне проекта:***
+## ***Создать .env файл в корне проекта. Внести в него переменные:***
 
-```bash
-docker build -t python3.9-alpine .
-```
+* .env:
+    * DB_NAME=postgres
+    * POSTGRES_USER=your_username
+    * POSTGRES_PASSWORD=your_password
+    * DB_HOST=postgres
+    * DB_PORT=5432
+    * DEBUG=False
+    * SECRET_KEY=your_secret_key_value
 
-### ***запустить контейнер:***
+
+
+### ***Для запуска выполнить команду:***
 ```bash
-docker run -d -p 5050:5000  -e SECRET_KEY=itssecretkeyvalue python3.9-alpine
+docker-compose up --build
 ```
 
 #### ***примеры запросов в файле `requests.http`***
